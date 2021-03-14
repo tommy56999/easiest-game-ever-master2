@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/*
+In der Klasse game ist die "Border" gemeint, in der das Spiel stattfindet. 
+Die width ist die Weite, also wie weit das Spiel von rechts nach links geht.
+Die height ist einfach die Höhe des Rahmens, die wir auf 200px setzen.
+Border ist der Rand, hier können wir die Farbe und Dicke des Randes ändern.
+margin: auto macht, dass das Game in der Mitte also zentriert platziert wird, ohne dass wäre es einfach links in der Ecke
+*/
+.game {
+  width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+/*
+Der character ist die Figur mit der wir spielen in unserem Game.
+Mit width können wir wieder die Breite unserer Figur angeben.
+Mit height wieder die Höhe.
+Bei background-color können wir einfach die Hintergrundfarbe ändern. 
+Position: relative macht, dass unsere Figur, mit der wir spielen unten links in der Ecke platziert wird.
+top bestimmt, wie weit oben oder unten unsere Figur platziert wird. Mit 150 platzieren wir sie genau richtig.
+*/
+#character {
+  width: 20px;
+  height: 50px;
+  background-color: rgb(98, 0, 255);
+  position: relative;
+  top: 150px;
+}
+
+/*
+Diese Animation macht, dass unsere Figur 0.3 Sekunden lang springt.
+*/
+.animate {
+  animation: jump 0.3s linear;
+}
+
+/*
+Hier animieren wir den jump. Wenn man es mit 0%, 30%, 70% und 100% aufbaut, dann sieht der Sprung am saubersten aus, wenn man z.B. die 70% in 95% umtauscht sieht man, dass der Sprung am Ende viel schneller nach unten geht. 
+*/
+@keyframes jump {
+  0% {
+    top: 150px;
+  }
+  30% {
+    top: 100px;
+  }
+  70% {
+    top: 100px;
+  }
+  100% {
+    top: 150px;
+  }
+}
+
+/*
+Der Block ist unser "Gegner" über den wir springen müssen. 
+backgroud-color ist wieder die Farbe, die wir unseren Block geben.
+width ist wieder die Breite.
+und height ist wieder die länge unseres Gegners
+mit position: relative können wir den Gegner "bewegen" und ihn wieder nach unten platzieren.
+Mit top und left platzieren wir den block rechts in der ecke auf der gleichen Höhe wie unsere Figur.
+animation macht, dass der block (Gegner) durchläuft, ohne das "infinite linear" würde er nur 1x durchlaufen, aber mit dem infinite linear läuft er in Dauerschleife durch.
+*/
+#block {
+  background-color: rgb(255, 0, 212);
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 130px;
+  left: 500px;
+  animation: block 1s infinite linear;
+}
+
+/*
+Hier erzeugen wir die Animation für den Gegner, also den block
+left 500px bewirkt, dass der block bei den 500ten Pixel der game Klasse, also bei der Border zum durchsliden beginnt.
+left -20px bewirkt, dass die Animation beim Pixel -20 des games aufhört zu animieren, würde dort eine Zahl über 20(also die Weite unserer Figur) stehen, dann würde das spiel unendlich lange gehen, weil der Gegner dann ja vor der Figur "zerstört" wird. 
+*/
+@keyframes block {
+  0% {
+    left: 500px;
+  }
+  100% {
+    left: -20px;
+  }
+}
+
+/*
+Mit dem text align center wird unser text, also "Score: .." in der Mitte angezeigt, sonst würder er nur links stehen
+*/
+p {
+  text-align: center;
+}
